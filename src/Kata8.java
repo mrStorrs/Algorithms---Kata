@@ -859,4 +859,237 @@ v
  		    return "false";
  		}
  	}
+ 	
+    /* 	completed 9/23/2020
+		Write a function which converts the input string to uppercase.
+
+		test cases:	
+	    System.out.println(Kata8.makeUpperCase("string"));
+	*/
+ 	 public static String makeUpperCase(String str){
+ 		 return str.toUpperCase();
+ 	 }
+ 	 
+     /*	completed 9/23/2020
+		There was a test in your class and you passed it. Congratulations!But you're an ambitious person.
+		You want to know if you're better than the average student in your class. You receive an array with
+		your peers' test scores. Now calculate the average and compare your score!
+		
+		Return True if you're better, else False!
+
+ 		test cases:	
+ 	    System.out.println(Kata8.makeUpperCase(new int[] {100, 40, 34, 57, 29, 72, 57, 88}, 75));
+ 	*/
+ 	public static boolean betterThanAverage(int[] classPoints, int yourPoints) {
+ 		int sum = yourPoints; //set sum in your points to add that to avg
+ 		int avg;
+ 		for(int num : classPoints) {
+ 			sum += num;
+ 		}
+ 		avg = sum / (classPoints.length + 1); //find avg then check if better.
+ 		if(yourPoints > avg) {
+ 			return true;
+ 		} else {
+ 			return false;
+ 		}
+ 	}
+ 	
+    /*	completed 9/23/2020
+		Given a non-empty array of integers, return the result of multiplying the values together in order. Example:
+
+		test cases:	
+	    System.out.println(Kata8.grow(new int[]{1,2,3}));
+	*/
+ 	public static int grow(int[] x){
+ 		int sum = 1; //use 1 because anything time 1 will be itself. 0 would make any first value 0
+ 		for (int num : x) {
+ 			sum *= num;
+ 		}
+ 		return sum;
+ 	}
+ 	
+    /*	completed 9/23/2020
+		Bob needs a fast way to calculate the volume of a cuboid with three values: length, width and
+		the height of the cuboid. Write a function to help Bob with this calculation.
+
+		test cases:	
+	    System.out.println(Kata8.grow(new int[]{1,2,3}));
+	*/
+ 	public static double getVolumeOfCuboid(final double length, final double width, final double height) {
+ 		return length * width * height;
+ 	}
+ 	
+    /*	completed 9/23/2020
+		You were camping with your friends far away from home, but when it's time to go back, you realize that
+		your fuel is running out and the nearest pump is 50 miles away! You know that on average, your car runs
+		on about 25 miles per gallon. There are 2 gallons left. Considering these factors, write a function that
+		tells you if it is possible to get to the pump or not. Function should return true (1 in Prolog) if it is
+		possible and false (0 in Prolog) if not. The input values are always positive.
+
+		test cases:	
+	    System.out.println(Kata8.zeroFuel(50, 25, 2));
+	*/
+ 	public static boolean zeroFuel(double distanceToPump, double mpg, double fuelLeft) {
+ 		System.out.println("test" + (mpg * fuelLeft / distanceToPump));
+ 		if(mpg * fuelLeft / distanceToPump >= 1) {
+ 			return true;
+ 		} else {
+ 			return false;
+ 		}
+ 	}
+ 	
+    /*	completed 9/23/2020
+		Write a function that takes an array of words and smashes them together into a sentence and returns the sentence.
+		You can ignore any need to sanitize words or add punctuation, but you should add spaces between each word. Be
+		careful, there shouldn't be a space at the beginning or the end of the sentence!
+
+		test cases:	
+	    System.out.println(Kata8.zeroFuel(50, 25, 2));
+	*/
+	public static String smash(String... words) {
+		/* the long way not useing join
+
+		String smush = "";
+		if(words.length == 0 || words == null) { //check for null or empty
+			return smush;
+		} else {
+			for (int i = 0; i < words.length; i++) {
+				if(i != 0) { //add the word at i wit a space before it unless it is the first word.
+					smush += " " + words[i];
+				} else {
+					smush += words[i];
+				}
+			}
+		}
+		return smush;
+		*/
+		return String.join(" ", words); //easy smeasy way.
+	}
+	
+    /*	completed 9/24/2020
+		After a hard quarter in the office you decide to get some rest on a vacation. So you will book a flight
+		for you and your girlfriend and try to leave all the mess behind you.You will need a rental car in order
+		for you to get around in your vacation. The manager of the car rental makes you some good offers.
+		Every day you rent the car costs $40. If you rent the car for 7 or more days, you get $50 off your total.
+		Alternatively, if you rent the car for 3 or more days, you get $20 off your total.
+		Write a code that gives out the total amount for different days(d).
+		
+		test cases:	
+	    System.out.println(Kata8.rentalCarCost(10));
+	*/
+	public static int rentalCarCost(int d) {
+		if(d >= 7) {
+			return d*40 - 50;
+		} else if(d >= 3) {
+			return d*40 - 20;
+		} else {
+			return d*40;
+		}
+	}
+	
+    /*	completed 9/24/2020
+		You are given two interior angles (in degrees) of a triangle. Write a function to return the 3rd.
+		Note: only positive integers will be tested.
+		
+		test cases:	
+	    System.out.println(Kata8.otherAngle(45, 12));
+	*/
+	public static int otherAngle(int angle1, int angle2) {
+		return 180 - (angle1 + angle2);
+	}
+	
+    /*	completed 9/24/2020
+		Write a function to split a string and convert it into an array of words. For
+		
+		test cases:	
+	    System.out.println(Kata8.strignToArray("Robin Singh"));
+	*/
+	public static String[] stringToArray(String s) {
+		
+		//easy way
+		return s.split(" ");
+		
+		/* long way!
+		String temp = "";
+		int wordCount = 1; //start at one for the first word
+		int index = 0;
+		//find out how many words in string by counting spaces
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) == ' ') {
+				wordCount++;
+			}
+		}
+		//create the string[] with size of wordCount then loop though adding words depending on conditions.
+		String[] words = new String[wordCount];
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) == ' ') { //check if space found. add temp to word array, reset temp, increase indx
+				words[index] = temp;
+				temp = "";
+				index++;
+			} else if( i == s.length()-1) { //check if last pos in string. add char then word 
+				temp += s.charAt(i);
+				words[index] = temp;
+			} else {
+				temp += s.charAt(i);
+			}
+		}
+		return words;
+		*/
+	}
+    /*	completed 9/24/2020
+		Given three integers a ,b ,c, return the largest number obtained after inserting the following
+		operators and brackets: +, *, ()
+		In other words , try every combination of a,b,c with [*+()] , and return the Maximum Obtained
+		
+		test cases:	
+	    System.out.println(Kata8.expressionsMatter(2, 1, 2));
+	*/
+    public static int expressionsMatter(int a, int b, int c) {
+    	int max = a;
+    	//an array holding all possible outcomes.
+    	int[] express = {a*b*c,a*b+c, a+b*c, a+b+c, (a+b)*c, a*(b+c)};
+    	
+    	//find max in the array of values.
+    	for(int num : express) {
+    		if(num > max) {
+    			max = num;
+    			System.out.println(max);
+    		}
+    	}
+    	return max;
+    }
+    
+    /*	completed 9/24/2020
+		This kata is about multiplying a given number by eight if it is an even number and by nine otherwise.
+		
+		test cases:	
+	    System.out.println(Kata8.simpleMulitplication(2));
+	*/
+    public static int simpleMultiplication(int n) {
+        if(n % 2 == 0) {
+        	return n * 8;
+        } else {
+        	return n * 9;
+        }
+    }
+    
+    /*	completed 9/24/2020
+		given a string change the case of any letters to the opposite. e.g. uppercase becomes lower
+		
+		test cases:	
+	    System.out.println(Kata8.toAlternativeString("hello world"));
+	*/
+    public static String toAlternativeString(String string) {
+    	String alternate = "";
+    	for(int i = 0; i < string.length(); i++) {
+    		if(Character.isUpperCase(string.charAt(i))) {
+    			alternate += Character.toLowerCase(string.charAt(i));
+    		} else if(Character.isLowerCase(string.charAt(i))) {
+    			alternate += Character.toUpperCase(string.charAt(i));
+    		} else {
+    			alternate += string.charAt(i);
+    		}
+    	}
+    	return alternate;
+    }
 }
