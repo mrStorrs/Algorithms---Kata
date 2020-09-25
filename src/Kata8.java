@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
+
 import java.util.Arrays;
+
 
 
 public class Kata8{
@@ -1091,5 +1094,73 @@ v
     		}
     	}
     	return alternate;
+    }
+    
+    /*	completed 9/25/2020
+		Given an array of integers as strings and numbers, return the sum of the array values as if all were numbers.
+		Return your answer as a number.
+				
+		test cases:	
+	    System.out.println(Kata8.sumMixed(Arrays.asList("3", 6, 6, 0, "5", 8, 5, "6", 2, "0"));
+	*/
+   	public static int sumMixed(List<?> mixed) {
+   		int sum = 0;
+   		for(int i = 0; i < mixed.size(); i++) {
+   			//each item to a string, then to an integer and add it to the sum.
+   			sum += Integer.parseInt(mixed.get(i).toString());
+   		}
+   		return sum;
+   	}
+   	
+    /*	completed 9/25/2020
+		Write function bmi that calculates body mass index (bmi = weight / height ^ 2).
+		if bmi <= 18.5 return "Underweight"
+		if bmi <= 25.0 return "Normal"
+		if bmi <= 30.0 return "Overweight"
+		if bmi > 30 return "Obese"
+				
+		test cases:	
+	    System.out.println(Kata8.bmi(125, 14));
+	*/
+    public static String bmi(double weight, double height) {
+        double bmi = weight / (height * height); //find bmi
+        //determine weight class
+        if 		(bmi <= 18.5) 	return "Underweight";
+        else if (bmi <= 25.0) 	return "Normal";
+        else if (bmi <= 30.0) 	return "Overweight";
+        else 					return "Obese";
+    }
+    
+    /*	completed 9/25/2020
+		Implement a function which multiplies two numbers.
+				
+		test cases:	
+	    System.out.println(Kata8.multiply(125, 14));
+	*/
+    public static int multiply(int num1, int num2) {
+    	return num1*num2;
+    }
+    
+    /*	completed 9/25/2020
+		Your task is to find the first element of an array that is not consecutive.
+		By not consecutive we mean not exactly 1 larger than the previous element of the array.
+		E.g. If we have an array [1,2,3,4,6,7,8] then 1 then 2 then 3 then 4 are all consecutive 
+		but 6 is not, so that's the first non-consecutive number.If the whole array is consecutive
+		then return null. The array will always have at least 2 elements and all elements will
+		be numbers. The numbers will also all be unique and in ascending order. The numbers could be
+		positive or negative and the first non-consecutive could be either too!
+				
+		test cases:	
+	    System.out.println(Kata8.multiply(new int[]{1, 2, 3, 4, 6, 7, 8}));
+	*/
+    static Integer find(final int[] array) {
+    	int temp = array[0];
+    	for(int i = 1; i < array.length; i++) {
+    		if(array[i] - temp > 1 || array[i] - temp == 0) {
+    			return array[i];
+    		}
+    		temp = array[i];
+    	}
+        return null;
     }
 }
