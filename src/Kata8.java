@@ -1156,11 +1156,11 @@ v
     static Integer find(final int[] array) {
     	int temp = array[0];
     	for(int i = 1; i < array.length; i++) {
-    		if(array[i] - temp > 1 || array[i] - temp == 0) {
-    			return array[i];
+    		if(array[i] - temp > 1 || array[i] - temp == 0) { //look for non consec #
+    			return array[i]; //return the number if found
     		}
-    		temp = array[i];
+    		temp++; //increment temp
     	}
-        return null;
+        return null; //if all consecutive return null.
     }
 }
