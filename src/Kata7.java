@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Kata7 {
     /*	completed 9/28/2020
@@ -94,6 +95,83 @@ public class Kata7 {
     	}
     	System.out.println(concat);
     	return Integer.valueOf(concat);
+    }
+    
+    /*	completed 10/9/2020
+		In this little assignment you are given a string of space separated numbers,
+		and have to return the highest and lowest number.
+		
+		test cases:	
+	    System.out.println(Kata8.highAndLow("1 2 3 4 5"));
+	*/
+    public static String highAndLow(String numbers) {
+    	//split the String to an array of strings only holding the number
+    	String[] numbersArr = numbers.split(" ");
+    	//convert to an array of integers
+    	int[] intArr = Arrays.stream(numbersArr).mapToInt(Integer::parseInt).toArray();
+    	int min = intArr[0]; int max = intArr[0]; //set min and max to int @ first index
+    	
+    	for(int i = 1; i < intArr.length; i++) { 
+    		if (intArr[i] > max) { //check if min or max
+    			max = intArr[i];
+    		} else if(intArr[i] < min) {
+    			min = intArr[i];
+    		}
+    	}
+    	return max + " " + min; 
+    }
+    
+    /*	completed 10/9/2020
+		Given a string of letters return each letter times the amount of its position in
+		the string sepereated by "-" the first iteration of the letter should be capitalized
+		e.g. "abcd" becomes "A-Bb-Ccc-Ddddd"
+		
+		test cases:	
+	    System.out.println(Kata7.accum("abcd"));
+	*/
+    public static String accum(String s) {
+    	String[] letters = new String[s.length()]; //an array to hold letters in the string.
+    	String l; //will hold letter in string.
+    	for(int i = 0; i < s.length(); i++) {
+    		l = Character.toString(s.charAt(i)); // convert character @ index to string
+    		letters[i] = l.toUpperCase(); //add uppercase to the array @ index
+    		for(int a = 0; a < i; a++) { //add the extra letters depending on the index.
+    			letters[i] += l.toLowerCase(); // add lowercase of letter.
+    		}
+    	}
+    	return String.join("-", letters);
+    }
+    
+    /*	completed 10/10/2020
+		given a string of words, return the length of the shortest word
+		
+		test cases:	
+	    System.out.println(Kata7.findShort("bitcoin take over the world maybe who knows perhaps"));
+	*/
+    public static int findShort(String s) {
+        String[] seperated = s.split(" "); //split s into an array of words
+        int shortest = seperated[0].length(); //init shortest to length of word at the first pos
+        for (String word : seperated) { //loop through to check if any words are shorter
+        	if(word.length() < shortest) {
+        		shortest = word.length();
+        	}
+        }
+        return shortest; //return shortest.
+    }
+    
+    /*	completed 10/10/2020
+		Your task is to make a function that can take any non-negative integer as an argument
+		and return it with its digits in descending order.
+		
+		test cases:	
+	    System.out.println(Kata7.findShort("bitcoin take over the world maybe who knows perhaps"));
+	*/
+    public static int sortDesc(final int num) {
+        String numbers = "" + num;
+        int temp;
+        for(int i = 0; i < numbers.length(); i++) {
+        	temp = (int) numbers.charAt(i);
+        }
     }
 
 }
