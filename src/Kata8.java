@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Arrays;
-
-
 
 public class Kata8{
     /* completed: 9/11/2020
@@ -594,8 +591,8 @@ v
 		(salary, bonus). Salary will be an integer, and bonus a boolean. If bonus is true, the
 		salary should be multiplied by 10. If bonus is false, the fatcat did not make enough
 		money and must receive only his stated salary. Return the total figure the individual will
-		receive as a string prefixed with "£" (= "\u00A3", JS, Go, and Java), "$"
-		(C#, C++, Ruby, Clojure, Elixir, PHP and Python, Haskell, Lua) or "¥" (Rust).
+		receive as a string prefixed with "ï¿½" (= "\u00A3", JS, Go, and Java), "$"
+		(C#, C++, Ruby, Clojure, Elixir, PHP and Python, Haskell, Lua) or "ï¿½" (Rust).
 		
 		test cases:	
 	    System.out.println(Kata8.bonusTime(2));
@@ -1151,7 +1148,7 @@ v
 		positive or negative and the first non-consecutive could be either too!
 				
 		test cases:	
-	    System.out.println(Kata8.multiply(new int[]{1, 2, 3, 4, 6, 7, 8}));
+	    System.out.println(Kata8.find(new int[]{1, 2, 3, 4, 6, 7, 8}));
 	*/
     static Integer find(final int[] array) {
     	int temp = array[0];
