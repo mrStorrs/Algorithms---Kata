@@ -27,7 +27,7 @@ public class Kata7 {
 		word's length is even, return the middle 2 characters.
 		
 		test cases:	
-	    System.out.println(Kata8.getMiddle("test"));
+	    System.out.println(Kata7.getMiddle("test"));
 	*/
 	
 	public static String getMiddle(String word) {
@@ -45,7 +45,7 @@ public class Kata7 {
 		Note: for this kata, y isn't considered a vowel.
 		
 		test cases:	
-	    System.out.println(Kata8.disemvowel("test"));
+	    System.out.println(Kata7.disemvowel("test"));
 	*/
     public static String disemvowel(String str) {
     	String voweless = "";
@@ -65,7 +65,7 @@ public class Kata7 {
 		Given an integral number, determine if it's a square number:
 		
 		test cases:	
-	    System.out.println(Kata8.isSqaure(9));
+	    System.out.println(Kata7.isSqaure(9));
 	*/
     public static boolean isSquare(int n) {
     	int num = (int) Math.sqrt(n); //get the sqrnt of n, floored by converting the sqrt to int
@@ -82,18 +82,16 @@ public class Kata7 {
 		811181 will come out, because 92 is 81 and 12 is 1.
 		
 		test cases:	
-	    System.out.println(Kata8.squareDigites(9119));
+	    System.out.println(Kata7.squareDigites(9119));
 	*/
     public static int squareDigits(int n) {
     	String s = "" + n; //convert n to string
     	String concat = "";
     	int num;
     	for(int i = 0; i < s.length(); i ++) {
-    		num = (int) s.charAt(i);
-    		System.out.println(num);
+    		num = Character.getNumericValue(s.charAt(i));
     		concat += num * num;
     	}
-    	System.out.println(concat);
     	return Integer.valueOf(concat);
     }
     
@@ -102,7 +100,7 @@ public class Kata7 {
 		and have to return the highest and lowest number.
 		
 		test cases:	
-	    System.out.println(Kata8.highAndLow("1 2 3 4 5"));
+	    System.out.println(Kata7.highAndLow("1 2 3 4 5"));
 	*/
     public static String highAndLow(String numbers) {
     	//split the String to an array of strings only holding the number
@@ -149,9 +147,9 @@ public class Kata7 {
 	    System.out.println(Kata7.findShort("bitcoin take over the world maybe who knows perhaps"));
 	*/
     public static int findShort(String s) {
-        String[] seperated = s.split(" "); //split s into an array of words
-        int shortest = seperated[0].length(); //init shortest to length of word at the first pos
-        for (String word : seperated) { //loop through to check if any words are shorter
+        String[] separated = s.split(" "); //split s into an array of words
+        int shortest = separated[0].length(); //init shortest to length of word at the first pos
+        for (String word : separated) { //loop through to check if any words are shorter
         	if(word.length() < shortest) {
         		shortest = word.length();
         	}
@@ -166,7 +164,10 @@ public class Kata7 {
 		test cases:	
 	    System.out.println(Kata7.sortDesc("bitcoin take over the world maybe who knows perhaps"));
 	*/
+    
+    */
     public static int sortDesc(final int num) {
+<<<<<<< Updated upstream
         String numbers = Integer.toString(num); //convert to str so i can split
 		String[] stringArr = numbers.split(""); //split to have  array of strings with single numbers
 		Boolean sorting = true; int sortCount; // used to tell if still sorting
@@ -178,6 +179,42 @@ public class Kata7 {
 				//set temp values
 				tempCur = Integer.parseInt(stringArr[i]);
 				tempNxt = Integer.parseInt(stringArr[i+1]);
+=======
+        String numbers = "" + num;
+        int temp;
+        for(int i = 0; i < numbers.length(); i++) {
+        	temp = (int) numbers.charAt(i);
+        }
+    }
+    
+    
+    
+    /*	completed 10/10/2020
+		Given a string, return it with every word capitalized. return null if string is empty.
+		
+		test cases:	
+	    System.out.println(Kata7.toJadenCase("this is a test to see if this works."));
+	*/
+	public static String toJadenCase(String phrase) {
+		String tempWord = "";
+		//check if string null or empty
+		if (phrase == null || phrase.length() == 0) {
+			return null;
+		}
+		//separate words
+		String[] separate = phrase.split(" ");
+		//loop through each word, create new temp word with first pos capitalized. then
+		// replace the word with the capitalized word.
+		for(int i = 0; i < separate.length; i++) {
+			tempWord = Character.toString(separate[i].charAt(0)).toUpperCase();
+			for(int a = 1; a < separate[i].length(); a++) {
+				tempWord += separate[i].charAt(a);
+			}
+			separate[i] = tempWord;
+		}
+		return String.join(" ", separate);
+	}
+>>>>>>> Stashed changes
 
 				if (tempCur < tempNxt){ //check if next value is greater
 					stringArr[i] = Integer.toString(tempNxt);
