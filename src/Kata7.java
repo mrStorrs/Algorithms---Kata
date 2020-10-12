@@ -165,26 +165,29 @@ public class Kata7 {
 	    System.out.println(Kata7.sortDesc("bitcoin take over the world maybe who knows perhaps"));
 	*/
     
-    */
     public static int sortDesc(final int num) {
-<<<<<<< Updated upstream
-        String numbers = Integer.toString(num); //convert to str so i can split
-		String[] stringArr = numbers.split(""); //split to have  array of strings with single numbers
-		Boolean sorting = true; int sortCount; // used to tell if still sorting
-		int tempCur; int tempNxt; //used to sort
-
-		while(sorting){
-			sortCount = 0; //reset sortCount
-			for(int i =0; i < stringArr.length - 1; i++){
-				//set temp values
-				tempCur = Integer.parseInt(stringArr[i]);
-				tempNxt = Integer.parseInt(stringArr[i+1]);
-=======
-        String numbers = "" + num;
-        int temp;
-        for(int i = 0; i < numbers.length(); i++) {
-        	temp = (int) numbers.charAt(i);
-        }
+    	String numbers = Integer.toString(num); //convert to str so i can split
+	    String[] stringArr = numbers.split(""); //split to have  array of strings with single numbers
+	    Boolean sorting = true; int sortCount; // used to tell if still sorting
+	    int tempCur; int tempNxt; //used to sort
+	
+	    while(sorting){
+	    	sortCount = 0; //reset sortCount
+	    	for(int i =0; i < stringArr.length - 1; i++){
+	    		//set temp values
+			    tempCur = Integer.parseInt(stringArr[i]);
+			    tempNxt = Integer.parseInt(stringArr[i+1]);
+			    if (tempCur < tempNxt){ //check if next value is greater
+			    	stringArr[i] = Integer.toString(tempNxt);
+			        stringArr[i+1] = Integer.toString(tempCur);
+			        sortCount++;
+			    }
+	    	}
+		    if(sortCount == 0)  { //stop loop if no sorting occured.
+		    	sorting = false;
+		    } 
+	    }
+	    return Integer.parseInt(String.join("", stringArr));
     }
     
     
@@ -214,18 +217,4 @@ public class Kata7 {
 		}
 		return String.join(" ", separate);
 	}
->>>>>>> Stashed changes
-
-				if (tempCur < tempNxt){ //check if next value is greater
-					stringArr[i] = Integer.toString(tempNxt);
-					stringArr[i+1] = Integer.toString(tempCur);
-					sortCount++;
-				}
-			}
-			if(sortCount == 0)	{ //stop loop if no sorting occured.
-				sorting = false;
-			}	
-		}
-		return Integer.parseInt(String.join("", stringArr));
-    }
 }
