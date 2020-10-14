@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Kata6 {
 	/*
@@ -77,5 +78,78 @@ public class Kata6 {
     			return likes.append(names[0] + ", " + names[1] + " and " +
     					(names.length -2) +  " others like this").toString();
     	}
-    }
+	}
+	
+	/*
+	 * completed 10/14/2020
+	 * 
+	 * Write a function that takes in a string of one or more words, and returns the
+	 * same string, but with all five or more letter words reversed. Strings passed
+	 * in will consist of only letters and spaces. Spaces will be included only when
+	 * more than one word is present.
+	 * 
+	 * Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw"
+	 * 
+	 * test cases: System.out.println(Kata6.spinWords("Hey fellow warriors"));
+	 */
+	public static String spinWords(String sentence) {
+		String[] seperated = sentence.split(" "); //create an array holding ind words.
+
+		for (int i = 0; i < seperated.length; i++){
+			StringBuilder reverse = new StringBuilder(); //reset reversed string
+			if (seperated[i].length() >= 5){
+				for(int i2 = seperated[i].length() - 1; i2 >= 0; i2--){
+					//loop through word startging at the end and build rev word.
+					reverse.append(seperated[i].charAt(i2));
+				}
+				seperated[i] = reverse.toString(); // set the word to the rev word.
+			}
+		}
+		return (String.join(" ", seperated)); //return the joined string
+	}
+
+	/*
+	 * completed 10/14/2020
+	 * 
+	 * Write a function that takes an integer as input, and returns the number of
+	 * bits that are equal to one in the binary representation of that number. You
+	 * can guarantee that input is non-negative.
+	 * 
+	 * Example: The binary representation of 1234 is 10011010010, so the function
+	 * should return 5 in this case
+	 * 
+	 * test cases: System.out.println(Kata6.countBits(1234));
+	 */
+	public static int countBits(int n) {
+		String binary = Integer.toBinaryString(n); //convert to a binary string
+		int bits = 0; //used to count 1's 
+		for(int i = 0; i < binary.length(); i++){  //find 1's
+			if(binary.charAt(i) == '1'){
+				bits++;
+			}
+		}
+		return bits; //return amt of 1's.
+	}
+	
+	/*
+	 * completed 10/14/2020
+	 * 
+	 * Write a function that accepts an array of 10 integers (between 0 and 9), that
+	 * returns a string of those numbers in the form of a phone number.
+	 * 
+	 * Example: createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}) // =>
+	 * returns "(123) 456-7890"
+	 * 
+	 * test cases: System.out.println(Kata6.createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+	 */
+	public static String createPhoneNumber(int[] numbers) {
+		//array the same length of numbers. will hold numbers in string format
+		String[] stringNum = new String[numbers.length];
+		//add each int in numbers to the same position in stringNum as a String
+		for(int i = 0; i < numbers.length; i++){
+			stringNum[i] = Integer.toString(numbers[i]);
+		}
+		//return the properly formatted string.
+		return String.format("(%s%s%s) %s%s%s-%s%s%s%s", stringNum);
+	}
 }
