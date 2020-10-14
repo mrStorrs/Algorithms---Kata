@@ -3,6 +3,27 @@ import java.util.Random;
 public class Main {
 	
 	//testing done here. 
+	
+    public static void main(String[] args){
+    	int tests = 1;
+        long startTime = System.currentTimeMillis(); // for testing run speed
+        for(int i = 0; i < tests; i ++) {
+        	
+    	    System.out.println(Kata6.whoLikesIt("Max", "John", "Mark"));
+    	    
+        }
+        long stopTime = System.currentTimeMillis();
+        long elapsedTimeAVG = stopTime - startTime;
+        System.out.println("average run-time per " + tests + " tests: " + elapsedTimeAVG);
+        System.out.println("average run-time per test: " + elapsedTimeAVG / tests);
+
+    }
+	
+	
+	
+	
+	
+	/* testing for kata 2
     public static void main(String[] args){
     	int tests = 100;
         long startTime = System.currentTimeMillis(); // for testing run speed
@@ -31,4 +52,6 @@ public class Main {
         return saltStr;
         
     }
+    
+    */
 }

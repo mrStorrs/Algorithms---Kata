@@ -1,15 +1,14 @@
 
 public class Kata6 {
-	
-    /*	completed 10/13/2020
-		If we list all the natural numbers below 10 that are multiples of 3 or
-		5, we get 3, 5, 6 and 9. The sum of these multiples is 23.Finish the 
-		solution so that it returns the sum of all the multiples of 3 or 5 
-		below the number passed in.
-		
-		test cases:	
-	    System.out.println(Kata6.sum3and5(10));
-	*/
+	/*
+	 * completed 10/13/2020 
+	 * If we list all the natural numbers below 10 that are
+	 * multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is
+	 * 23.Finish the solution so that it returns the sum of all the multiples of 3
+	 * or 5 below the number passed in.
+	 * 
+	 * test cases: System.out.println(Kata6.sum3and5(10));
+	 */
 	public int sum3and5(int number) {
 		int sum = 0; 
 		if (number <= 0) { //check if number is -
@@ -45,35 +44,38 @@ public class Kata6 {
 		return n;
 	}
 	
-    /*	completed 10/13/2020
-		You probably know the "like" system from Facebook and other pages.
-		People can "like" blog posts, pictures or other items. We want to
-		create the text that should be displayed next to such an item.
-		Your results should look like:
-		
-		likes {} // must be "no one likes this"
-		likes {"Peter"} // must be "Peter likes this"
-		likes {"Jacob", "Alex"} // must be "Jacob and Alex like this"
-		likes {"Max", "John", "Mark"} // must be "Max, John and Mark like this"
-		likes {"Alex", "Jacob", "Mark", "Max"} // must be "Alex, Jacob and 2 others like this"
-
-		test cases:	
-	    System.out.println(Kata6.whoLikesIt("Max", "John", "Mark"));
-	*/
+	/*
+	 * completed 10/13/2020
+	 * You probably know the "like" system from Facebook and
+	 * other pages. People can "like" blog posts, pictures or other items. We want
+	 * to create the text that should be displayed next to such an item. Your
+	 * results should look like:
+	 * 
+	 * likes {} // must be "no one likes this"
+	 * likes {"Peter"} // must be "Peter likes this"
+	 * likes {"Jacob", "Alex"} // must be "Jacob and Alex like this"
+	 * likes {"Max", "John", "Mark"} // must be "Max, John and Mark like this"
+	 * likes {"Alex", "Jacob", "Mark", "Max"} // must be "Alex, Jacob and 2 others like this"
+	 * 
+	 * test cases: System.out.println(Kata6.whoLikesIt("Max", "John", "Mark"));
+	 */
     public static String whoLikesIt(String... names) {
     	StringBuilder likes = new StringBuilder();
-    	//depending on number of names return the following using stringbuilder to create string
+    	//depending on number of names return the following using stringbuilder
     	switch (names.length){
     		case 0:
     			return "no one likes this";
     		case 1:
-    			return likes.append(names[0]).toString();
+    			return likes.append(names[0] + " likes this").toString();
     		case 2:
-    			return likes.append(names[0] + " and " + names[1] + " like this").toString();
+    			return likes.append(names[0] + " and " + names[1] +
+    					" like this").toString();
     		case 3:
-    			return likes.append(names[0] + ", " + names[1] + " and " + names[2] + " like this").toString();
+    			return likes.append(names[0] + ", " + names[1] + " and " +
+    					names[2] + " like this").toString();
     		default:
-    			return likes.append(names[0] + ", " + names[1] + " and 2 others like this").toString();
+    			return likes.append(names[0] + ", " + names[1] + " and " +
+    					(names.length -2) +  " others like this").toString();
     	}
     }
 }
