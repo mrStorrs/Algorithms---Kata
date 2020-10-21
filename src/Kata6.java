@@ -273,4 +273,58 @@ public class Kata6 {
 		return decoded.toString();
 		*/
 	}
+	
+	/*
+	 * completed 10/20/2020
+	 * 
+	 * given an array of 3 ints and an int. return an array that uses the last 3
+	 * numbers of the sequence to generate the next number by summing the last 3
+	 * #'s. the returned array should be the length of the single int given.
+	 * 
+	 * example: given {1,1,1},10, return; {1,1,1,3,5,9,17,31,57,105}
+	 * 
+	 * test cases: System.out.println(Kata6.tribonacci(new double []{1,1,1},10));
+	 */
+	public static double[] tribonacci(double[] s, int n) {
+		double[] tSum = new double[n]; // array to hold summed values
+		for(int i = 0; i < n; i++){
+			if(i == 0 || i == 1 || i == 2){ // for first 3 indexs just add the element
+				tSum[i] = s[i];
+			} else { //then start summing the last 3 values in tSum
+				tSum[i] = tSum[i-1] + tSum[i-2]  + tSum[i-3];
+			}
+		}
+		return tSum;
+	}
+
+	/*
+	 * completed 10/20/2020
+	 * 
+	 * Your task is to sort a given string. Each word in the string will contain a
+	 * single number. This number is the position the word should have in the
+	 * result.
+	 * 
+	 * Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
+	 * 
+	 * If the input string is empty, return an empty string. The words in the input
+	 * String will only contain valid consecutive numbers.
+	 * 
+	 * test cases: System.out.println(Kata6.order("is2 Thi1s T4est 3a");
+	 */
+	public static String order(String words) {
+		//check if empty string given.
+		if(words.length() == 0) return "";
+		//create a new array with the words split
+		String[] wordsSplit = words.split(" ");
+		//this array will hold the ordered items.
+		String[] ordered = new String[wordsSplit.length];
+		int index; //will hold the index the word should be at.
+		for(int i = 0; i < wordsSplit.length; i ++){
+			// get the index the word should be at by removing all non-digits then
+			// casting the remaining value to an int, then subtract 1
+			index = Integer.valueOf(wordsSplit[i].replaceAll("\\D+", "")) - 1;
+			ordered[index] = wordsSplit[i]; //add word @ the proper index.
+		}
+		return String.join(" ", ordered);
+	}
 }
