@@ -7,7 +7,7 @@ public class Kata5 {
      * language
      * 
      * test cases: System.out.println(Kata5.pigIt("Pig latin is cool"));
-     */
+    */
     public static String pigIt(String str) {
         //seperate words into an array
         String[] strSplit = str.split(" ");
@@ -39,5 +39,26 @@ public class Kata5 {
             }
         }  
         return String.join(" ", strSplit); //return the array of words joined by " "
+    }
+
+    /*
+     * completed 10/30/2020
+     * 
+     * Write a function, which takes a non-negative integer (seconds) as input and
+     * returns the time in a human-readable format (HH:MM:SS)
+     * 
+     * test cases: System.out.println(Kata5.makeReadable(3600));
+     */
+    public static String makeReadable(int seconds) {
+        int hours = 0; int minutes = 0;
+        if(seconds >= 3600){  //find hours
+            hours = seconds / 3600; 
+            seconds = seconds % 3600; 
+        }
+        if(seconds >= 60){ //find minutes
+            minutes = seconds / 60;
+            seconds = seconds % 60; 
+        }
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 }
