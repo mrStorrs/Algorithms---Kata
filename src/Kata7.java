@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class Kata7 {
