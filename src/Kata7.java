@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class Kata7 {
     /*	completed 9/28/2020
@@ -266,5 +268,48 @@ public class Kata7 {
 			}
 		}
 		return currRow.charAt(0);
+	}
+
+	/*
+	 * completed 11/24/2020
+	 * 
+	 * Count the number of divisors of a positive integer n.
+	 * 
+	 * test cases: System.out.println(Kata7.numberOfDivisors(1023));
+	 */
+	public static long numberOfDivisors(int n) {
+		int numDivisors = 0; 
+		for(int i = 1; i <= n; i++){
+			if(n % i == 0){
+				numDivisors++;
+			}
+		}
+		return numDivisors;
+	}
+
+	/*
+	 * completed 11/24/2020
+	 * 
+	 * An isogram is a word that has no repeating letters, consecutive or
+	 * non-consecutive. Implement a function that determines whether a string that
+	 * contains only letters is an isogram. Assume the empty string is an isogram.
+	 * Ignore letter case.
+	 * 
+	 * test cases: System.out.println(Kata7.isIsogram("test"));
+	 */
+	public static boolean isIsogram(String str) {
+		Hashtable<Character, Integer> letters = new Hashtable<>(26);
+		// check for empty and single str 
+		if(str.length() <= 1 ) return true;
+		for(int i = 0; i < str.length(); i++){
+			//get char at index location then set to lowercase.
+			char c = Character.toLowerCase(str.charAt(i));
+			if(letters.get(c) == null){
+				letters.put(c, 1);
+			} else {
+				return false; // if already a matching key, is not isoGram return false.
+			}
+		}
+		return true; // no duplicate chars found. word is isogram.
 	}
 }
