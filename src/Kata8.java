@@ -1159,5 +1159,19 @@ v
     		temp++; //increment temp
     	}
         return null; //if all consecutive return null.
-    }
+	}
+
+	/*
+	 * completed 11/27/2020
+	 * 
+	 * Given a number(n) return true if the number is even and false if not.
+	 * Input may be pos/neg integers and floats. Floats are always false
+	 * 
+	 * test cases: System.out.println(Kata8.isEven(8));
+	 */
+	public boolean isEven(double n) {
+		if(n % 2 == 0) return true;
+		else return false;
+	}
+
 }
