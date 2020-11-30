@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Kata5 {
     /*
@@ -83,67 +84,39 @@ public class Kata5 {
      * "SOUTH", "EAST", "WEST", "NORTH", "WEST"}));
      */
     public static String[] dirReduc(String[] arr) {
-        String lastDirection;
-        ArrayList<String> reduced = new ArrayList<String>();
-        boolean foundReduction = true;
-        int currentSize; //used to see if any reductions or additions made
-        while (foundReduction){
-            currentSize = reduced.size();
-            //make sure directions length is > 1 
-            if (arr.length > 1 ){ //set last direction to first pos of array
-                lastDirection = arr[0];
-            } else return arr; //return array since there directions are simplified.
-    
-            //loop to move through the array testing directions
-            for(int i = 1; i < arr.length; i ++ ){
-                System.out.println("Current Itteration = " + i);
-                switch (arr[i]) {
-                    case "NORTH": 
-                        if (!lastDirection.equals("SOUTH")) {
-                            reduced.add(arr[i]);
-                        } else if (reduced.size() > 0) {
-                            reduced.remove(reduced.size() - 1);
-                        }
-                        break;
-                    case "SOUTH": 
-                        if (!lastDirection.equals("NORTH")) {
-                            reduced.add(arr[i]);
-                        } else if (reduced.size() > 0) {
-                            reduced.remove(reduced.size() - 1);
-                        }
-                        break;
-                    case "EAST": 
-                        if (!lastDirection.equals("WEST")) {
-                            reduced.add(arr[i]);
-                            System.out.println(arr[i] + "bobo");
-                        } else if (reduced.size() > 0) {
-                            reduced.remove(reduced.size() - 1);
-                        }
-                        break;
-                    case "WEST":
-                        if (!lastDirection.equals("EAST")){
-                            reduced.add(arr[i]);
-                        } else if (reduced.size() > 0) {
-                            reduced.remove(reduced.size() - 1);
-                        }
-                        break;
+        String lastDir; //used to hold last direction called
+        String dir; //hold current direction
+        ArrayList<String> reduced = new ArrayList<String>(Arrays.asList(arr));
+        boolean redFound = false;
+        String[][] directions = { {"NORTH", "SOUTH"}, {"EAST", "WEST"} };
+
+        do {
+            redFound = false;
+            //if arr has a length of 1 or less return the arr in current state
+            if (reduced.size() > 1 ) lastDir = reduced.get(0);
+            else break; 
+
+            for(int i = 1; i < reduced.size(); i++){ //loop to find redundant directions
+                lastDir = reduced.get(i - 1).toUpperCase();  
+                dir = reduced.get(i).toUpperCase();
+                //find current direction in directions grid, then check if redundant
+                for(String[] d : directions){
+                    if(lastDir.equals(dir)) break; //not redundant if same directions
+                    // find array that holds current direction
+                    if (d[0].equals(dir) || d[1].equals(dir)){
+                        //check if array holds last direction. then remove redundant
+                        if (d[0].equals(lastDir) || d[1].equals(lastDir)){
+                            reduced.remove(i-1); //remove offending directions.
+                            reduced.remove(i-1);
+                            i--; //decrement i since we removed elements
+                            redFound = true; //a reduction has been found. Continue loop
+                        } 
+                    }
                 }
-                //if at the first itteration and there was a direction added, add  intial direction.
-                if(i == 1 && !reduced.isEmpty()){
-                    reduced.add(0, lastDirection);
-                    System.out.println("adding the first direction");
-                }
-                lastDirection = arr[i]; //set to arr[i] since this will now be the last dir
             }
-            if(currentSize == reduced.size()) foundReduction = false;
-        }
-        //declare final string array to the size of reduced array List 
-        String[] finalReduced = new String[reduced.size()];
-        finalReduced = reduced.toArray(finalReduced);
-        for(String a : finalReduced){
-            System.out.println(a);
-        }
-        return reduced.toArray(finalReduced); //return arraylist converted to array
+        } while (redFound);
+        //convert reduced to String[] then return.
+        String[] reducedStr = new String[reduced.size()];
+        return reducedStr = reduced.toArray(reducedStr);
     }
-    
 }
