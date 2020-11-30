@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Kata5 {
     /*
      * completed 10/20/2020
@@ -61,4 +63,87 @@ public class Kata5 {
         }
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
+
+    /*
+     * completed 10/30/2020
+     * 
+     * … a man was given directions to go from one point to another. The directions
+     * were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are
+     * opposite, "WEST" and "EAST" too.
+     * 
+     * Going to one direction and coming back the opposite direction right away is a
+     * needless effort. Since this is the wild WEST, with dreadfull weather and not
+     * much water, it's important to save yourself some energy, otherwise you might
+     * die of thirst!
+     * 
+     * So, given a set of directions remove any redundant directions and then return
+     * only the correct moves.
+     * 
+     * test cases: System.out.println(Kata5.dirReduc(new String[]{"NORTH", "SOUTH",
+     * "SOUTH", "EAST", "WEST", "NORTH", "WEST"}));
+     */
+    public static String[] dirReduc(String[] arr) {
+        String lastDirection;
+        ArrayList<String> reduced = new ArrayList<String>();
+        boolean foundReduction = true;
+        int currentSize; //used to see if any reductions or additions made
+        while (foundReduction){
+            currentSize = reduced.size();
+            //make sure directions length is > 1 
+            if (arr.length > 1 ){ //set last direction to first pos of array
+                lastDirection = arr[0];
+            } else return arr; //return array since there directions are simplified.
+    
+            //loop to move through the array testing directions
+            for(int i = 1; i < arr.length; i ++ ){
+                System.out.println("Current Itteration = " + i);
+                switch (arr[i]) {
+                    case "NORTH": 
+                        if (!lastDirection.equals("SOUTH")) {
+                            reduced.add(arr[i]);
+                        } else if (reduced.size() > 0) {
+                            reduced.remove(reduced.size() - 1);
+                        }
+                        break;
+                    case "SOUTH": 
+                        if (!lastDirection.equals("NORTH")) {
+                            reduced.add(arr[i]);
+                        } else if (reduced.size() > 0) {
+                            reduced.remove(reduced.size() - 1);
+                        }
+                        break;
+                    case "EAST": 
+                        if (!lastDirection.equals("WEST")) {
+                            reduced.add(arr[i]);
+                            System.out.println(arr[i] + "bobo");
+                        } else if (reduced.size() > 0) {
+                            reduced.remove(reduced.size() - 1);
+                        }
+                        break;
+                    case "WEST":
+                        if (!lastDirection.equals("EAST")){
+                            reduced.add(arr[i]);
+                        } else if (reduced.size() > 0) {
+                            reduced.remove(reduced.size() - 1);
+                        }
+                        break;
+                }
+                //if at the first itteration and there was a direction added, add  intial direction.
+                if(i == 1 && !reduced.isEmpty()){
+                    reduced.add(0, lastDirection);
+                    System.out.println("adding the first direction");
+                }
+                lastDirection = arr[i]; //set to arr[i] since this will now be the last dir
+            }
+            if(currentSize == reduced.size()) foundReduction = false;
+        }
+        //declare final string array to the size of reduced array List 
+        String[] finalReduced = new String[reduced.size()];
+        finalReduced = reduced.toArray(finalReduced);
+        for(String a : finalReduced){
+            System.out.println(a);
+        }
+        return reduced.toArray(finalReduced); //return arraylist converted to array
+    }
+    
 }
