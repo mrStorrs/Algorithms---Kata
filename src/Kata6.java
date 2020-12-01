@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Kata6 {
 	/*
@@ -405,7 +408,7 @@ public class Kata6 {
 	 * test cases: System.out.println(Kata6.bouncingBall(3.0, 0.66, 1.5));
 	 */
 	public static int bouncingBall(double h, double bounce, double window) {
-		int bounces = -1; //will hold the number of bounces seen. start neg since first drop is only 1 bounce
+		int bounces = -1; //start neg, since first ball is only seen on drop
 		//make sure experiment is  valid
 		if(h <= window || bounce < 0 || bounce >= 1 || window <= 0) return -1;
 		while(h > window){
@@ -413,6 +416,31 @@ public class Kata6 {
 			h = h * bounce; //set new height 
 		}
 		return bounces;	
+	}
+
+	/*
+	 * completed 12/1/2020
+	 * 
+	 * Write a function that will return the count of distinct case-insensitive
+	 * alphabetic characters and numeric digits that occur more than once in the
+	 * input string. The input string can be assumed to contain only alphabets (both
+	 * uppercase and lowercase) and numeric digits.
+	 * 
+	 * test cases: System.out.println(Kata6.duplicateCount(abcde));
+	 */
+	public static int duplicateCount(String text) {
+		int count = 0; 
+		//create a new map to hold the letters 
+		HashMap<Character, Integer> found = new HashMap<Character, Integer>();
+		for(int i = 0; i < text.length(); i++){ 
+			char c = text.charAt(i);
+			if (!found.containsKey(c)) found.put(c, 1);
+			else{
+				found.put(c, found.get(c) + 1);
+				if (found.get(c)  == 2) count++;
+			}
+		}
+		return count; 
 	}
 }
 
