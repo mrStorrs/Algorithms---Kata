@@ -433,14 +433,38 @@ public class Kata6 {
 		//create a new map to hold the letters 
 		HashMap<Character, Integer> found = new HashMap<Character, Integer>();
 		for(int i = 0; i < text.length(); i++){ 
-			char c = text.charAt(i);
-			if (!found.containsKey(c)) found.put(c, 1);
+			//find the Character at I and covert it to lowercase
+			Character c = Character.toLowerCase(text.charAt(i));
+			if (!found.containsKey(c)) found.put(c, 1); // add key if none
 			else{
-				found.put(c, found.get(c) + 1);
-				if (found.get(c)  == 2) count++;
+				found.put(c, found.get(c) + 1); //increment value 
+				if (found.get(c)  == 2) count++; //found duplicate add to count.
 			}
 		}
 		return count; 
+	}
+
+	/*
+	 * completed 12/3/2020
+	 * 
+	 * Complete the method/function so that it converts dash/underscore delimited
+	 * words into camel casing. The first word within the output should be
+	 * capitalized only if the original word was capitalized (known as Upper Camel
+	 * Case, also often referred to as Pascal case).
+	 * 
+	 * test cases: System.out.println(Kata6.toCamelCase("the-stealth-warrior"));
+	 */
+	public static String toCamelCase(String s) {
+		StringBuilder camel = new StringBuilder(s.length());
+		for(int i = 0; i < s.length(); i++){
+			if (s.charAt(i) == '-' || s.charAt(i) == '_'){ 
+				camel.append(Character.toUpperCase(s.charAt(i+1))); //add next char as UPPER.
+				i++; //increment i since we just added the next letter already.
+			} 
+			else if (i == 0 ) camel.append(s.charAt(i)); //add first value as is.
+			else camel.append(Character.toLowerCase(s.charAt(i))); //add lowercase C to 
+		}
+		return camel.toString();
 	}
 }
 
