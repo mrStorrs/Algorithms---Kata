@@ -311,4 +311,26 @@ public class Kata7 {
 		}
 		return true; // no duplicate chars found. word is isogram.
 	}
+
+	/*
+	 * Find the next perfect square! completed 11/24/2020
+	 * 
+	 * Complete the findNextSquare method that finds the next integral perfect
+	 * square after the one passed as a parameter. Recall that an integral perfect
+	 * square is an integer n such that sqrt(n) is also an integer.
+	 * 
+	 * If the parameter is itself not a perfect square then -1 should be returned.
+	 * You may assume the parameter is positive.
+	 * 
+	 * test cases: System.out.println(Kata7.findNextSquare(625));
+	 */
+	public static long findNextSquare(long sq) {
+		double sqr = Math.sqrt(sq); //get sqrt of sq
+		if ( sqr != Math.floor(sqr)) return -1; //check if perfect square
+		while( 1 > 0 ) { //loop infinitly till next square found.
+			sq++; //increment sq 
+			sqr = Math.sqrt(sq);; //find sqr root and cast to int
+			if (sqr == Math.floor(sqr)) return sq; //check if sqr is valid, if not incr sqr
+		}
+  	}
 }
