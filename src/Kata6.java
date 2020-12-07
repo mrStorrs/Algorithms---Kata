@@ -466,6 +466,37 @@ public class Kata6 {
 		}
 		return camel.toString();
 	}
+
+	/*
+	 * completed 12/7/2020
+	 * 
+	 * Given a positive integer n written as abcd... (a, b, c, d... being digits)
+	 * and a positive integer p
+	 * 
+	 * we want to find a positive integer k, if it exists, such as the sum of the
+	 * digits of n taken to the successive powers of p is equal to k * n. If true
+	 * return K, else return false.
+	 * 
+	 * test cases: System.out.println(Kata6.digPow(89, 1));
+	 */
+
+	public static long digPow(int n, int p) {
+		int sum = 0; //used to hold sum
+		int nTemp; //will hold ind value of each num in nStr
+		//convert int to string so we can iterate through each number
+		String nStr = Integer.toString(n);
+		//loop through string adding adding squared values
+		for(int i = 0; i < nStr.length(); i++){
+			nTemp = Character.getNumericValue(nStr.charAt(i)); //convert char to int.
+			System.out.println("temporary value" + nTemp);
+			sum += Math.pow(nTemp, p); //add the value to sum
+			p++; //increment p
+			System.out.println("sum: " + sum);
+		}
+		if (sum == (sum / n) * n) return sum / n;
+		else return -1;
+	}
+	
 }
 
 
