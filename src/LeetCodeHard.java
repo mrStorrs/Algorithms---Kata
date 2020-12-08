@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LeetCodeHard {
@@ -27,5 +28,40 @@ public class LeetCodeHard {
         }
         return posI;
     }
-    
+
+    /*
+     * #4 Median of Two Sorted Arrays
+     * 
+     * Given two sorted arrays nums1 and nums2 of size m and n respectively, return
+     * the median of the two sorted arrays.
+     * 
+     * test cases: System.out.println(LeetCodeHard.java.findMedianSortedArrays(new
+     * int[] {1,2}, new int[] {1}));
+     */
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int totalLength = nums1.length + nums2.length;
+        int[] bothNums = new int[totalLength];
+        int bothIndex = 0;
+
+        //add all the items
+        for(int i = 0; i < nums1.length; i ++){
+            bothNums[bothIndex] = nums1[i];
+            bothIndex++;
+        }
+        for(int i = 0; i < nums2.length; i ++){
+            bothNums[bothIndex] = nums2[i];
+            bothIndex++;
+        }
+
+        Arrays.sort(bothNums); //sort array
+
+        //find median
+        if(totalLength == 1) return bothNums[0];
+        if(totalLength % 2 != 0){
+            return (bothNums[totalLength/2]);
+        } else {
+            return ((((double) bothNums[totalLength / 2 - 1]) + ((double) bothNums[totalLength / 2]))) / 2;
+        }
+
+    }
 }
