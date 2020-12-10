@@ -479,7 +479,6 @@ public class Kata6 {
 	 * 
 	 * test cases: System.out.println(Kata6.digPow(89, 1));
 	 */
-
 	public static long digPow(int n, int p) {
 		int sum = 0; //used to hold sum
 		int nTemp; //will hold ind value of each num in nStr
@@ -493,6 +492,35 @@ public class Kata6 {
 		}
 		if (sum == (sum / n) * n) return sum / n; //checking condiiton
 		else return -1;
+	}
+
+	/*
+	 * Your task is to construct a building which will be a pile of n cubes. The
+	 * cube at the bottom will have a volume of n^3, the cube above will have volume
+	 * of (n-1)^3 and so on until the top which will have a volume of 1^3.
+	 * 
+	 * You are given the total volume m of the building. Being given m can you find
+	 * the number n of cubes you will have to build?
+	 * 
+	 * The parameter of the function findNb (find_nb, find-nb, findNb) will be an
+	 * integer m and you have to return the integer n such as n^3 + (n-1)^3 + ... +
+	 * 1^3 = m if such a n exists or -1 if there is no such n.
+	 * 
+	 * * test cases: System.out.println(Kata6.findNb(4183059834009L));
+	 */
+	public static long findNb(long m){
+		/* if we divide m by the sum of all previous n's then it should 
+		 * = the sum of all n's. Thus this loop increments n and adds to the 
+		 * sum until the answer is either = to each other or less than sumN (signifying
+		 * that there is not int that matches.)	*/
+		int n = 1; //used to hold n
+		int sumN = 1; //used to hold the sum of all n's
+		while( m / sumN > sumN){ //loop to increment n till desired outcome found
+			n++; 
+			sumN += n;
+		}
+		if( m % sumN > 0.0D) return -1; //no int that matches so return -1
+		else return (long) n; //else return the n.
 	}
 	
 }
