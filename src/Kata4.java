@@ -13,7 +13,6 @@ public class Kata4 {
      * 
      * test cases: System.out.println(Kata4.snail(new int {[[1,2,3], [4,5,6], [7,8,9]]}));
      */
-
     public static int[] snail(int[][] array) {
         //create an array that will be the same size as the full array.
         int[] snailed = new int[array[0].length * array.length];

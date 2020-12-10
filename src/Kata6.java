@@ -488,12 +488,10 @@ public class Kata6 {
 		//loop through string adding adding squared values
 		for(int i = 0; i < nStr.length(); i++){
 			nTemp = Character.getNumericValue(nStr.charAt(i)); //convert char to int.
-			System.out.println("temporary value" + nTemp);
 			sum += Math.pow(nTemp, p); //add the value to sum
 			p++; //increment p
-			System.out.println("sum: " + sum);
 		}
-		if (sum == (sum / n) * n) return sum / n;
+		if (sum == (sum / n) * n) return sum / n; //checking condiiton
 		else return -1;
 	}
 	

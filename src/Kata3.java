@@ -12,34 +12,29 @@ public class Kata3 {
      */
     public static Double evaluate(String expression) {
         //make a stringbuilder and remove all spaces.
-        System.out.println("problem: " + expression);
         StringBuilder evaluated = new StringBuilder(expression.replaceAll(" ", ""));
-        System.out.println("builder: " + evaluated);
 
         //remove any double negatives
         for(int i = 0; i < evaluated.length(); i++){
             if(evaluated.charAt(i) == '-' && evaluated.charAt(i+1) == '-'){
                 evaluated.replace(i, i+2, "+");
-                System.out.println("replaced dNegs: " + evaluated);
             }
         }
 
-
-        //check for "()" -> runs at least once.
-        int leftP = 0; 
+        //check for "()"
+        int leftP = 0; //hold index of outermost left "("
         do {
-            int rightP = 0;
-            int leftPindex =0; int rightPindex = 0;
+            int rightP = 0; //same but right.
+            int leftPindex =0; int rightPindex = 0; //hold position of inner "()"
             for(int i = 0; i < evaluated.length(); i++){
                 if (evaluated.charAt(i) == '('){
                     leftP++;
-                    if (leftP == 1){
+                    if (leftP == 1){ 
                         leftPindex = i;
                     }
                 } else if( evaluated.charAt(i) == ')'){
                     rightP++; 
                 }
-    
                 if (leftP == rightP && rightP > 0){
                     rightPindex = i;
                 }
@@ -53,13 +48,10 @@ public class Kata3 {
             } 
         } while (leftP > 0);
 
-        //no () found. do rest of math.
+        //no () found. do now do multiplication and division.
         boolean divMultOpFound = false;
-        //boolean divMultFound = false;
         int startIndex = 0;
         int endIndex = evaluated.length();
-
-        //do mult/div
         do {
             startIndex = 0; //reset both start and endIndex
             endIndex = evaluated.length();
@@ -86,12 +78,12 @@ public class Kata3 {
                     evaluated.replace(startIndex, endIndex,
                             basicMath(evaluated.substring(startIndex, endIndex )));
                     endIndex = evaluated.length(); //reset endIndex
-                    System.out.println("test " + evaluated.toString());
                     break;
                 }
             }
         } while (divMultOpFound);
 
+        //no "()", or multiplicaiton/division now do addition/subtraction
         boolean subAddOpFound = false;
         do {
             // finally do addition and subtraction.
@@ -114,27 +106,27 @@ public class Kata3 {
                     evaluated.replace(startIndex, endIndex,
                             basicMath(evaluated.substring(startIndex, endIndex )));
                     endIndex = evaluated.length(); //reset endIndex
-                    System.out.println("test " + evaluated.toString());
                 }
             }
         } while (subAddOpFound);
         //return answer.
         return Double.parseDouble(evaluated.toString());
     }
-    //used for above method.
+    //used to do simple math in above method.
     public static String basicMath(String exp){
-        System.out.println("Doing math on: " + exp);
-        String[] temp;
+        String[] temp; //will hold the values to have mathmatical op performed on.
         for(int i = 1; i < exp.length(); i++){
+            //find type of math
             switch (exp.charAt(i)){
                 case '+':
-                    temp = exp.split("\\+");
+                    temp = exp.split("\\+"); //split by the operator 
+                    //convert to Doubles then do math, then convert back to string.
                     return Double.toString((Double.parseDouble(temp[0]) + Double.parseDouble(temp[1])));
                 case '-':
                     temp = exp.split("\\-");
-                    if (exp.charAt(0) == '-'){
+                    if (exp.charAt(0) == '-'){ //value must be negative.
                         return Double.toString(((Double.parseDouble(temp[1]) * -1) - Double.parseDouble(temp[2])));
-                    } else {
+                    } else { //do same as above
                         return Double.toString((Double.parseDouble(temp[0]) - Double.parseDouble(temp[1])));
                     }
                 case '*':

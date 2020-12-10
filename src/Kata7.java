@@ -330,7 +330,7 @@ public class Kata7 {
 		while( 1 > 0 ) { //loop infinitly till next square found.
 			sq++; //increment sq 
 			sqr = Math.sqrt(sq);; //find sqr root and cast to int
-			if (sqr == Math.floor(sqr)) return sq; //check if sqr is valid, if not incr sqr
+			if (sqr == Math.floor(sqr)) return sq; //check if sqr is valid
 		}
   	}
 }
