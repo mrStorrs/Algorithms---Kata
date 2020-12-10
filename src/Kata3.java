@@ -139,14 +139,4 @@ public class Kata3 {
         }
         return "";
     }
-
-    /*
-     * notes use switch case, to look for *+-/ then perform operations on prev and
-     * next index. then use string builder replace to replace the item
-     * 
-     * //failed on "-521538720 + -93238217" "4.0-6/3"
-     * "-1827220880 - -1427984899 - 548695" "2 + 3 * 4 / 3 - 6 / 3 * 3 + 8"
-     * 
-     * 
-     */
 }
