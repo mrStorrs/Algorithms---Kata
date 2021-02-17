@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -5,11 +6,13 @@ public class Main {
 	//testing done here. 
 	
     public static void main(String[] args){
-    	int tests = 1;
+    	int tests = 20;
         long startTime = System.currentTimeMillis(); // for testing run speed
         for(int i = 0; i < tests; i ++) {
-        	
-    	    System.out.println(Kata6.whoLikesIt("Max", "John", "Mark"));
+        	int[] randomArray = randomArrayGen(5, 10);
+            
+            System.out.println(Arrays.toString(randomArray));
+    	    System.out.println(Arrays.toString(LeetCodeEasy.twoSum(randomArray, 6)));
     	    
         }
         long stopTime = System.currentTimeMillis();
@@ -19,10 +22,25 @@ public class Main {
 
     }
 	
-	
-	
-	
-	
+
+    /**
+     * Randomly generates an array of integers of a specified length. Allows you to
+     * specify the max integer.
+     * 
+     * @param length the length that you want the array to be
+     * @param maxNum the maximum number that you want to be randomly generated.
+     */
+    protected static int[] randomArrayGen(int length, int maxNum) {
+        Random rd = new Random(); // instantiate new random object
+        int[] random = new int[length]; // set length to desired length
+        for (int i = 0; i < length - 1; i++) {
+            random[i] = rd.nextInt(maxNum + 1); // change num to a random betweewn specified int.;
+        }
+
+        return random;
+    }
+
+
 	/* testing for kata 2
     public static void main(String[] args){
     	int tests = 100;
@@ -39,7 +57,6 @@ public class Main {
         System.out.println("average run-time per test: " + elapsedTimeAVG / tests);
     }
 
-    //used for kata 2 to generate long random string
     protected static String getSaltString() {
         String SALTCHARS = "RGB";
         StringBuilder salt = new StringBuilder();
@@ -52,6 +69,6 @@ public class Main {
         return saltStr;
         
     }
-    
     */
+
 }
