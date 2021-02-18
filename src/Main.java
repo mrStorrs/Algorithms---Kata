@@ -4,24 +4,25 @@ import java.util.Random;
 public class Main {
 	
 	//testing done here. 
-	
     public static void main(String[] args){
     	int tests = 20;
         long startTime = System.currentTimeMillis(); // for testing run speed
+        Random rd = new Random();
+
         for(int i = 0; i < tests; i ++) {
-        	int[] randomArray = randomArrayGen(5, 10);
-            
-            System.out.println(Arrays.toString(randomArray));
-    	    System.out.println(Arrays.toString(LeetCodeEasy.twoSum(randomArray, 6)));
-    	    
+        	int[] randomArray = randomNumArrayGen(5, 10);
+            String randomString = randomStringGenerator(rd.nextInt(10));
+
+            System.out.println(randomString);
+    	    // System.out.println(LeetCodeMedium.lengthOfLongestSubstring(" "));
         }
+
         long stopTime = System.currentTimeMillis();
         long elapsedTimeAVG = stopTime - startTime;
         System.out.println("average run-time per " + tests + " tests: " + elapsedTimeAVG);
         System.out.println("average run-time per test: " + elapsedTimeAVG / tests);
 
     }
-	
 
     /**
      * Randomly generates an array of integers of a specified length. Allows you to
@@ -30,7 +31,7 @@ public class Main {
      * @param length the length that you want the array to be
      * @param maxNum the maximum number that you want to be randomly generated.
      */
-    protected static int[] randomArrayGen(int length, int maxNum) {
+    protected static int[] randomNumArrayGen(int length, int maxNum) {
         Random rd = new Random(); // instantiate new random object
         int[] random = new int[length]; // set length to desired length
         for (int i = 0; i < length - 1; i++) {
@@ -40,6 +41,48 @@ public class Main {
         return random;
     }
 
+    /**
+     * Randomly generates a string using the alphabet (upper and lower case) to a specified length
+     * 
+     * @param strLength specify how long you want the random strings to be. 
+     * @return returns a random string 
+     */
+    protected static String randomStringGenerator(int strLength) {
+        String SALTCHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+
+        while (salt.length() < strLength) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+
+        return saltStr;
+    }
+
+    /**
+     * Randomly generates a string using the alphabet (upper and lower case) to a
+     * specified length
+     * 
+     * @param strLength specify how long you want the random strings to be.
+     * @param letters specify which letters you want inside the string.
+     * @return returns a random string
+     */
+    protected static String randomStringGenerator(int strLength, String letters) {
+        String SALTCHARS = letters;
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+
+        while (salt.length() < strLength) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+
+        return saltStr;
+
+    }
 
 	/* testing for kata 2
     public static void main(String[] args){
