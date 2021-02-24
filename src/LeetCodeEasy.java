@@ -26,4 +26,26 @@ public class LeetCodeEasy {
         }
         return new int[] {index, index++};
      }
+
+    /*
+     * #7 Reverse Integer completed 2/24/2020
+     * 
+     * Given a signed 32-bit integer x, return x with its digits reversed. If
+     * reversing x causes the value to go outside the signed 32-bit integer range
+     * [-231, 231 - 1], then return 0.
+     * 
+     * test cases: System.out.println(LeetCodeEasy.reverse(-321));
+     */
+    public static int reverse(int x) {
+        StringBuilder sbInt = new StringBuilder(Integer.toString(x)); //convert to SB to use revers func
+        if(sbInt.charAt(0) == '-'){ //check if negative, put negative at end before reversing.
+            sbInt.deleteCharAt(0);
+            sbInt.append('-');
+        }
+        Long revLong = Long.parseLong(sbInt.reverse().toString()); //reverse string and convert to a long
+        if (revLong > Math.pow(2,31)-1 || revLong < - Math.pow(2,31)){ //check if value is within integer range.
+            return 0; 
+        }
+        return revLong.intValue(); 
+    }
 }
