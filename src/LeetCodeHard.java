@@ -64,4 +64,54 @@ public class LeetCodeHard {
         }
 
     }
+
+    /*
+     * #10 Regular Expression Matching
+     * 
+     * Given an input string (s) and a pattern (p), implement regular expression
+     * matching with support for '.' and '*' where:
+     * 
+     * '.' Matches any single character.​​​​ '*' Matches zero or more of the
+     * preceding element. The matching should cover the entire input string (not
+     * partial).
+     * 
+     * test cases: System.out.println(LeetCodeHard.isMatch("aa", "a*"));
+     */
+    public static boolean isMatch(String s, String p) {
+        boolean repeat = false;
+        char patternC;
+        char cR = ' '; //will hold letter to repeat.
+        int sI = s.length() -1; //this will be our pattern itterator
+
+        //Work backward. This will allow us to catch any of the . or * to know when a letter an be repeated
+        for(int patternI = p.length() - 1; patternI >= 0 && sI >=0; patternI--, sI--){
+            patternC = p.charAt(patternI); //current matching letter. 
+            System.out.println(patternC + "...." + s.charAt(sI));
+
+            //what to do with *
+            if(patternC == '*'){
+                if(patternI > 0){
+                    cR = p.charAt(patternI-1); //get preceding character and set to be repeated.
+                    repeat = true; //found a letter that can be repeated. 
+                }
+            } else if(repeat){  // what to do with . 
+                if(s.charAt(sI) != patternC && cR != '.'){
+                    repeat = false;
+                    sI++;
+                } else {
+                    patternI++; //don't move the matcher index repeat found. 
+                }
+            }
+
+            if(!repeat){
+                if(patternC != s.charAt(sI) && p.charAt(patternI) != '.') return false;
+            }
+
+            //check for end of matcher
+            if(patternI == 0 && sI != 0) return false; //string is longer than pattern allows.
+            
+        }
+        return true; 
+
+    }
 }
