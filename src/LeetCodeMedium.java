@@ -126,7 +126,6 @@ public class LeetCodeMedium {
         String sSub; 
         int start = -1;
         int end = 0;
-        int tempNum;
 
         for(int i = 0; i < sTrim.length(); i++){
             //look for characters in reg string
@@ -160,5 +159,35 @@ public class LeetCodeMedium {
         }
 
     }
+
+    /*
+     * 11. Container with most water.
+     * 
+     * Given n non-negative integers a1, a2, ..., an , where each represents a point
+     * at coordinate (i, ai). n vertical lines are drawn such that the two endpoints
+     * of the line i is at (i, ai) and (i, 0). Find two lines, which, together with
+     * the x-axis forms a container, such that the container contains the most
+     * water.
+     * 
+     * Notice that you may not slant the container.
+     * 
+     * test cases: System.out.println(LeetCodeMedium.maxArea(new int[] = {1,8,6,2,5,4,8,3,7} ));
+     */
+    public static int maxArea(int[] height) {
+        //use two pointers approach. initialize pointer.
+        int beg = 0;
+        int end = height.length - 1;
+
+        int max = Integer.MIN_VALUE; 
+        while (beg < end){
+            //check if new max found.
+            max = Math.max(max, Math.min(height[beg], height[end])* (end-beg));
+            //move pointers 
+            if(height[beg] < height[end]) beg++;
+            else end--;
+        }
+        return max; 
+    }
+    
 }
  
