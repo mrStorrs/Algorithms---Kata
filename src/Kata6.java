@@ -520,7 +520,7 @@ public class Kata6 {
 			sumN += n;
 		}
 		if( m % sumN > 0.0D) return -1; //no int that matches so return -1
-		else return (long) n; //found matching n, return as long
+		else return (long) n; //else return the n.
 	}
 	
 }

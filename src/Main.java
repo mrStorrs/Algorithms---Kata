@@ -1,10 +1,5 @@
 import java.util.Arrays;
-<<<<<<< Updated upstream
-=======
-import java.util.List;
->>>>>>> Stashed changes
 import java.util.Random;
-import java.util.Collections;
 
 public class Main {
 	
@@ -12,7 +7,6 @@ public class Main {
     public static void main(String[] args){
     	int tests = 20;
         long startTime = System.currentTimeMillis(); // for testing run speed
-<<<<<<< Updated upstream
         Random rd = new Random();
 
         for(int i = 0; i < tests; i ++) {
@@ -24,24 +18,11 @@ public class Main {
         }
 
         long stopTime = System.currentTimeMillis();
-=======
-        // for(int i = 0; i < tests; i ++) {
-
-        //     System.out.println(Kata6.findNb(24723578342962L));
-        // }
-        String[] array = { "abc", "02", "10", "00" };
-        List<String> list = Arrays.asList(array);
-        Collections.sort(list);
-        System.out.println(Arrays.toString(array));
-        
-        long stopTime = System.currentTimeMillis(); 
->>>>>>> Stashed changes
         long elapsedTimeAVG = stopTime - startTime;
         System.out.println("average run-time per " + tests + " tests: " + elapsedTimeAVG);
         System.out.println("average run-time per test: " + elapsedTimeAVG / tests);
 
     }
-<<<<<<< Updated upstream
 
     /**
      * Randomly generates an array of integers of a specified length. Allows you to
@@ -103,13 +84,6 @@ public class Main {
 
     }
 
-=======
-    
-    //[1,2,3,4]
-    //[5,6,7,8]
-    //[9,10,11,12]
-    //[13,14,15,16]
->>>>>>> Stashed changes
 	/* testing for kata 2
     public static void main(String[] args){
     	int tests = 100;
