@@ -1161,7 +1161,7 @@ v
         return null; //if all consecutive return null.
 	}
 
-	/*
+	/**
 	 * completed 11/27/2020
 	 * 
 	 * Given a number(n) return true if the number is even and false if not.
