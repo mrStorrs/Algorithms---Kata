@@ -14,11 +14,6 @@
  differant way. It also ensures that I do not skip a problem because I find it too
  difficult.
  
- I am doing 16 weeks of algorithms starting on the 11th of September. Every 2 weeks I
- am going to move the diffulty up 1 Kata. Every day, any free time that I have that day
- will be spent trying to solve as many Kata as I can. This is a challenge I have set for
- myself and I am excited to see just how many algorithms I can complete. 
- 
  One more note: 
  Some of the methods may have multiple solutions that I have figured out. Instead of
  just rewriting the method, I plan on commenting out the one I find less efficent and 
