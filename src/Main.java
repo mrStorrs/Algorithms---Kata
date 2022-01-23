@@ -5,16 +5,20 @@ public class Main {
 	
 	//testing done here. 
     public static void main(String[] args){
-    	int tests = 20;
+    	int tests = 1;
         long startTime = System.currentTimeMillis(); // for testing run speed
         Random rd = new Random();
 
         for(int i = 0; i < tests; i ++) {
         	int[] randomArray = randomNumArrayGen(5, 10);
-            String randomString = randomStringGenerator(rd.nextInt(10));
+            String randomString = randomStringGenerator(rd.nextInt(10)).toLowerCase();
 
-            System.out.println(randomString);
-    	    // System.out.println(LeetCodeMedium.lengthOfLongestSubstring(" "));
+            System.out.println(LeetCodeEasy.longestCommonPrefix(new String[] {"flower","flow","flight"}));
+            System.out.println(LeetCodeEasy.longestCommonPrefix(new String[] { "dog", "racecar", "car"}));
+            System.out.println(LeetCodeEasy.longestCommonPrefix(new String[] { "dog"}));
+            System.out.println(LeetCodeEasy.longestCommonPrefix(new String[] {"", ""}));
+            System.out.println(LeetCodeEasy.longestCommonPrefix(new String[] {"flower", "flower", "flower"}));
+            System.out.println(LeetCodeEasy.longestCommonPrefix(new String[] {"ab", "a"}));
         }
 
         long stopTime = System.currentTimeMillis();
@@ -23,7 +27,7 @@ public class Main {
         System.out.println("average run-time per test: " + elapsedTimeAVG / tests);
 
     }
-
+ 
     /**
      * Randomly generates an array of integers of a specified length. Allows you to
      * specify the max integer.
@@ -33,7 +37,7 @@ public class Main {
      */
     protected static int[] randomNumArrayGen(int length, int maxNum) {
         Random rd = new Random(); // instantiate new random object
-        int[] random = new int[length]; // set length to desired length
+        int[] random = new int[length]; // set length to desired length 
         for (int i = 0; i < length - 1; i++) {
             random[i] = rd.nextInt(maxNum + 1); // change num to a random betweewn specified int.;
         }

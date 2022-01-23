@@ -80,38 +80,77 @@ public class LeetCodeHard {
     public static boolean isMatch(String s, String p) {
         boolean repeat = false;
         char patternC;
-        char cR = ' '; //will hold letter to repeat.
-        int sI = s.length() -1; //this will be our pattern itterator
+        char cR = ' '; // will hold letter to repeat.
+        int sI = s.length(); // this will be our pattern itterator
+        int pI = p.length();
+        int repeatCnt = 0; // track how many times a letter is repeated
 
-        //Work backward. This will allow us to catch any of the . or * to know when a letter an be repeated
-        for(int patternI = p.length() - 1; patternI >= 0 && sI >=0; patternI--, sI--){
-            patternC = p.charAt(patternI); //current matching letter. 
-            System.out.println(patternC + "...." + s.charAt(sI));
-
-            //what to do with *
-            if(patternC == '*'){
-                if(patternI > 0){
-                    cR = p.charAt(patternI-1); //get preceding character and set to be repeated.
-                    repeat = true; //found a letter that can be repeated. 
+        // Work backward. This will allow us to catch any of the . or * to know when a
+        // letter an be repeated
+        while (sI > 0 && pI > 0) {
+            pI--;
+            sI--;
+            patternC = p.charAt(pI); // current matching letter.
+            // System.out.println(pI);
+            // what to do when found repeat char
+            if (patternC == '*') {
+                if (pI > 0) {
+                    cR = p.charAt(pI - 1); // get preceding character and set to be repeated.
+                    repeat = true; // found a letter that can be repeated.
+                    repeatCnt = 0;
+                    sI++; // don't move string interval this iteration
                 }
-            } else if(repeat){  // what to do with . 
-                if(s.charAt(sI) != patternC && cR != '.'){
-                    repeat = false;
+            } else if (repeat) { // if repeat is true then check if it shold remain true
+                if (s.charAt(sI) != cR && cR != '.') { // no longer a repeat. Do not move string interval
                     sI++;
+                    repeat = false;
+                    // check if a letter was never repeated. If so skip rest of loop and go to next
+                    // iteration
+                    if (repeatCnt < 2) {
+                        // sI--;
+                        continue;
+                    }
                 } else {
-                    patternI++; //don't move the matcher index repeat found. 
+                    pI++; // repeat found, do not move pattern matcher
+                    repeatCnt++;
                 }
             }
 
-            if(!repeat){
-                if(patternC != s.charAt(sI) && p.charAt(patternI) != '.') return false;
+            // System.out.println("patternC: " + pI + " StringC: " + sI);
+            if (!repeat) { // repeat not active, check pattern vs str.
+                // if (sI == 0 && pI != 0)
+                // return false; // see if string interval is @ 0 and pattern is not.
+                // if (sI == 0 && pI != 0)
+                // return false; // see if string interval is @ 0 and pattern is not.
+                if (patternC != s.charAt(sI) && patternC != '.') {
+                    // System.out.println("testing");
+                    return false;
+                }
             }
 
-            //check for end of matcher
-            if(patternI == 0 && sI != 0) return false; //string is longer than pattern allows.
-            
+            // check for end of matcher but not string.
+            if (pI == 0 && sI != 0)
+                return false; // string is longer than pattern allows.
+
         }
-        return true; 
+
+        if (sI > 0)
+            return false; // ensure full string was checked.
+
+        // ensure that there is the a minimum amount of letters per periods
+        // if (pI > 0){
+        int nPeriod = 0;
+        for (int i = 0; i < pI; i++) {
+            if (p.charAt(i) == '.')
+                nPeriod++;
+            if (p.charAt(i) == '*' && p.charAt(i - 1) == '.')
+                nPeriod--;
+        }
+        if (nPeriod > s.length())
+            return false;
+        // }
+
+        return true;
 
     }
 }

@@ -1,14 +1,16 @@
 public class LeetCodeEasy {
 
     
-    /* #1 Two Sum.
-     * completed 2/17/2020
+    /*
+     * #1 Two Sum. completed 2/17/2020
      * 
-     * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-     * You may assume that each input would have exactly one solution, and you may not use the same element twice.
+     * Given an array of integers nums and an integer target, return indices of the
+     * two numbers such that they add up to target. You may assume that each input
+     * would have exactly one solution, and you may not use the same element twice.
      * You can return the answer in any order.
-
-     * test cases: System.out.println(LeetCodeEasy.java.TwoSum(new int[] {3,2,1,3}, 6));
+     * 
+     * test cases: System.out.println(LeetCodeEasy.longestCommonPrefix(new String[]
+     * {"flower","flow","flight"}));
      */
     public static int[] twoSum(int[] nums, int target){
         int index = 0;
@@ -118,5 +120,43 @@ public class LeetCodeEasy {
             }
         }
         return sum;
-    }    
+    }
+
+    /*
+     * #14 Longest Common Prefix
+     * 
+     * Write a function to find the longest common prefix string amongst an array of
+     * strings.
+     * 
+     * If there is no common prefix, return an empty string "".
+     * 
+     * test cases:
+     * System.out.println(LeetCodeEasy.longestCommonPrefix("flower","flow","flight")
+     * );
+     */
+    public static String longestCommonPrefix(String[] strs) {
+        if(strs.length == 0) return ""; //checking empty arrays
+        if(strs.length < 2) return strs[0]; //check for single words
+        if(strs[0].equals("")) return ""; //check for empty words
+        
+        int nSub = 0;
+        String sub = strs[0];
+
+
+        for(int i = 1; i < strs.length; i++){
+            //check for no match.
+            if(!sub.substring(0, nSub + 1).equals(strs[i].substring(0, nSub + 1))){
+                return strs[0].substring(0, nSub); // no match return current substring
+            }
+
+            //check if at end of arrays but not the end of the first string
+            if(i == strs.length - 1  && nSub  != sub.length() - 1){
+                i = 1; //reset to 1rst postion of array
+                nSub++; //increase the length of substring to be tested. 
+            }
+        }
+
+        return sub.substring(0, nSub + 1);
+
+    }
 }
